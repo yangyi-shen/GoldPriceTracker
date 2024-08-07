@@ -1,0 +1,27 @@
+* {
+    --base: #fffbeb;
+    --primary: #f59e0b;
+}
+
+#headline {
+    margin-top: 25vh;
+}
+
+.highlight {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    color: var(--base)
+}
+
+.highlight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--primary);
+    transform: rotate(1deg) scaleX(1.1) scaleY(0.95);
+    z-index: -1;
+}
