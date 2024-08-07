@@ -4,18 +4,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!--INTERNAL DEPENDENCIES-->
+        <link rel="stylesheet" href="./highlight.css">
+
         <!--EXTERNAL DEPENDENCIES-->
         <script src="./tailwind.min.js"></script> <!--locally hosted so I can work on this offline-->
 
         <title>GoldPriceTracker</title>
     </head>
-    <body>
-        <h1>Keep an eye on gold automatically</h1>
-        <p>Get an email if the price goes up or down more than $10 in one day</p>
-        <form>
-            <input type="email" placeholder="Your email here">
-            <button type="submit">Submit</button>
+    <body class="bg-amber-50 text-center">
+        <h1 id="headline" class="text-5xl text-amber-950 font-extrabold tracking-tight leading-tight">Keep an eye on gold<br><span class="highlight">automatically</span></h1>
+        <p class="mt-4 mb-8 text-lg text-amber-500 font-bold">Get an email if the price changes more than $10/day</p>
+        <form class="flex align-center justify-center">
+            <input class="py-2 px-3 rounded-none border-t-2 border-l-2 border-b-2 border-amber-500 font-light" type="email" placeholder="Your email here">
+            <button class="py-2 px-4 text-md text-amber-50 font-extrabold bg-amber-500" type="submit">Submit</button>
         </form>
-        <footer>Copyright © Yang-Yi Shen 2024</footer>
+        <footer class="mt-32 flex justify-center">
+            <p class="text-amber-400 font-light">Copyright © 2024 Yang-Yi Shen</p>
+        </footer>
     </body>
 </html>
