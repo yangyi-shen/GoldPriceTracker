@@ -8,8 +8,13 @@ const app = express();
 app.use(cors());
 
 app.post('/email/save', async (req, res) => {
-    const address = req.query.address;
-    await emailUtils.saveEmail(address)
+    try {
+        const address = req.query.address;
+        await emailUtils.saveEmail(address)
+        res.send(true)
+    } catch (error) {
+        res.send(false)
+    }
 })
 
 app.listen(PORT, () => {
