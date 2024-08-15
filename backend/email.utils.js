@@ -1,5 +1,6 @@
 import sql from './db.js'
 import nodemailer from 'nodemailer'
+import 'dotenv/config';
 
 async function saveEmail(address) {
     // save email address
@@ -16,7 +17,7 @@ async function sendEmail(oldPrice, newPrice, address) {
         secure: false, // use `true` for port 465, `false` for all other ports
         auth: {
             user: "yyshen.projects@gmail.com",
-            pass: "GENERATE LATER",
+            pass: process.env.SMTP_PASS,
         },
     });
 
