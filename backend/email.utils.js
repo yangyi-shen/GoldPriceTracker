@@ -33,10 +33,16 @@ async function sendEmail(oldPrice, newPrice, address) {
     // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 }
 
-function sendEmailAll(oldPrice, newPrice) {
-    // send email to all emails in database
+async function sendEmailAll(oldPrice, newPrice) {
+    // retrieve list of emails from database
+    const emails = await sql`SELECT * FROM emails;`
+    console.log(emails);
+    await sql.end();
+
+    // loop over emails
 }
 
-sendEmail(100, 120, 'mrshenyangyi@gmail.com').catch(console.error);
+// sendEmail(100, 120, 'mrshenyangyi@gmail.com').catch(console.error);
+sendEmailAll();
 
 export default { saveEmail, sendEmail, sendEmailAll }
