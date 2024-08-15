@@ -13,7 +13,7 @@ async function sendEmail(oldPrice, newPrice, address) {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
-        secure: false, // Use `true` for port 465, `false` for all other ports
+        secure: false, // use `true` for port 465, `false` for all other ports
         auth: {
             user: "yyshen.projects@gmail.com",
             pass: "GENERATE LATER",
@@ -22,27 +22,28 @@ async function sendEmail(oldPrice, newPrice, address) {
 
     // send mail with defined transport object
     const info = await transporter.sendMail({
-        from: '"Gold Price Tracker 👑" <yyshen.projects@gmail.com>', // sender address
-        to: address, // list of receivers
-        subject: "The price of gold has changed", // Subject line
-        text: `The prise has risen from ${oldPrice} to ${newPrice}`, // plain text body
-        html: "<b>Hello world?</b>", // html body
+        from: '"Gold Price Tracker 👑" <yyshen.projects@gmail.com>',
+        to: address,
+        subject: "The price of gold has changed", 
+        text: `The prise has risen from ${oldPrice} to ${newPrice}`,
+        html: "<b>Hello world?</b>",
     });
 
     console.log("Message sent: %s", info.messageId);
-    // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 }
 
 async function sendEmailAll(oldPrice, newPrice) {
     // retrieve list of emails from database
     const emails = await sql`SELECT * FROM emails;`
-    console.log(emails);
     await sql.end();
 
     // loop over emails
+    for (const email of emails) {
+        const address = email.address;
+        sendEmail(oldPrice, newPrice, address);
+    }
 }
 
 // sendEmail(100, 120, 'mrshenyangyi@gmail.com').catch(console.error);
-sendEmailAll();
 
 export default { saveEmail, sendEmail, sendEmailAll }
