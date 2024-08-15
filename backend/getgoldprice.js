@@ -1,16 +1,9 @@
-import axios from "axios";
-import cheerio from "cheerio";
-
-const URL = 'https://goldprice.org/'
+const API_URL = 'https://data-asg.goldprice.org/dbXRates/USD'
 
 export default async function getGoldPrice() {
-    // get the price of gold via web scraping
-    const response = await axios.get(URL);
+    const response = await fetch(API_URL)
+        .then(response => response.json())
+        .then(response => response.items[0].xauPrice)
 
-    const $ = cheerio.load(response.data);
-    const price = $('.gpoticker-price').text();
-
-    console.log('Price:', price);
+    return response
 }
-
-getGoldPrice();
