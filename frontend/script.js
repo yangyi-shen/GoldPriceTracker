@@ -1,8 +1,10 @@
 const emailForm = document.getElementById('email-form');
 const emailInput = document.getElementById('email-input');
 const errorMessage = document.getElementById('error-message')
+const spamMessage = document.getElementById('spam-message')
 
 errorMessage.style.display = 'none';
+spamMessage.style.display = 'block';
 
 const URL = 'http://localhost:6900'
 
@@ -25,6 +27,7 @@ emailForm.addEventListener('submit', async (event) => {
             })
     } else {
         errorMessage.style.display = 'block';
+        spamMessage.style.display = 'none';
     }
 
     emailInput.value = '';
