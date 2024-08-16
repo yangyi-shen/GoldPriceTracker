@@ -1,14 +1,20 @@
-import sql from './db.js'
+import postgres from "postgres"
 import nodemailer from 'nodemailer'
 import 'dotenv/config';
 
+const connectionString = process.env.DATABASE_URL
+
 async function saveEmail(address) {
+    const sql = postgres(connectionString)
+    
     // save email address
     await sql`INSERT INTO emails VALUES (${address});`;
     await sql.end();
 }
 
 async function deleteEmail(address) {
+    const sql = postgres(connectionString)
+
     // delete email address
     await sql`DELETE FROM emails WHERE address = ${address};`;
     await sql.end();
@@ -39,6 +45,8 @@ async function sendEmail(oldPrice, newPrice, address) {
 }
 
 async function sendEmailAll(oldPrice, newPrice) {
+    const sql = postgres(connectionString)
+
     // retrieve list of emails from database
     const emails = await sql`SELECT * FROM emails;`
     await sql.end();
