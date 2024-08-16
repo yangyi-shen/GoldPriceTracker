@@ -10,10 +10,20 @@ app.use(cors());
 app.post('/email/save', async (req, res) => {
     try {
         const address = req.query.address;
-        await emailUtils.saveEmail(address)
-        res.send(true)
+        await emailUtils.saveEmail(address);
+        res.send(true);
     } catch (error) {
-        res.send(false)
+        res.send(false);
+    }
+})
+
+app.delete('/email/delete', async (req, res) => {
+    try {
+        const address = req.query.address;
+        await emailUtils.deleteEmail(address);
+        res.send(true);
+    } catch (error) {
+        res.send(false);
     }
 })
 
