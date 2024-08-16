@@ -38,7 +38,7 @@ async function sendEmail(oldPrice, newPrice, address) {
         to: address,
         subject: "The price of gold has changed", 
         text: `The prise has risen from ${oldPrice} to ${newPrice}`,
-        html: "<b>Hello world?</b>",
+        html: "<b>Hello world?</b> To unsubscribe, click <a href='goldpricetracker.yyshen.com/unsubscribe.html'>here</a>.",
     });
 
     console.log("Message sent: %s", info.messageId);
