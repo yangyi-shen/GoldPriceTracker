@@ -4,10 +4,15 @@ import 'dotenv/config';
 
 async function saveEmail(address) {
     // save email address
-    await sql`INSERT INTO emails VALUES (${address});`
+    await sql`INSERT INTO emails VALUES (${address});`;
     await sql.end();
 }
 
+async function deleteEmail(address) {
+    // delete email address
+    await sql`DELETE FROM emails WHERE address = ${address};`;
+    await sql.end();
+}
 
 async function sendEmail(oldPrice, newPrice, address) {
     // send email to single address
@@ -45,6 +50,6 @@ async function sendEmailAll(oldPrice, newPrice) {
     }
 }
 
-// sendEmail(100, 120, 'mrshenyangyi@gmail.com').catch(console.error);
+deleteEmail('amongus.sussy@baka')
 
-export default { saveEmail, sendEmail, sendEmailAll }
+export default { saveEmail, deleteEmail, sendEmail, sendEmailAll }
